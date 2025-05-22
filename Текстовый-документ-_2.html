@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roblox Gift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-color: linear-gradient(to right, #ff6f91, #ff9671);
+      --container-bg: #fff0f5;
+      --text-color: #4a0033;
+      --input-bg: #ffe4ec;
+      --button-bg: #ff2d55;
+      --button-hover: #cc1f44;
+      --shadow: rgba(0, 0, 0, 0.2);
+      --decoration: linear-gradient(90deg, #ff2d55, #ffc107);
+    }
+
+    body.dark {
+      --bg-color: linear-gradient(135deg, #121212, #2c004d, #4a0073);
+      --container-bg: rgba(58, 27, 79, 0.85);
+      --text-color: #d9b3ff;
+      --input-bg: #4a3b66;
+      --button-bg: #9c27b0;
+      --button-hover: #7b1fa2;
+      --shadow: rgba(156, 39, 176, 0.4);
+      --decoration: linear-gradient(90deg, #b366ff, #7b1fa2);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-color);
+      background-attachment: fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: background 0.8s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      background: var(--container-bg);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 40px var(--shadow);
+      text-align: center;
+      width: 100%;
+      max-width: 450px;
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      backdrop-filter: blur(8px);
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--decoration);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      transition: all 0.6s ease;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: var(--text-color);
+      text-shadow: 2px 2px 6px rgba(60, 0, 100, 0.8);
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .gift-logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      position: relative;
+      animation: gentleFloat 6s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .gift-logo::before {
+      content: "🎁";
+      font-size: 80px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .gift-logo::after {
+      content: "Roblox";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--text-color);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(2deg); }
+      50% { transform: translateY(0) rotate(0deg); }
+      75% { transform: translateY(-5px) rotate(-2deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      background: var(--input-bg);
+      color: var(--text-color);
+      box-shadow: inset 0 0 8px rgba(156, 39, 176, 0.3);
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      box-shadow: 0 0 10px 3px rgba(179, 102, 255, 0.6);
+      background: #5c478c;
+    }
+
+    .btn {
+      margin-top: 20px;
+      background: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      letter-spacing: 1px;
+      box-shadow: 0 6px 12px var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      background: var(--button-hover);
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px var(--shadow);
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+      transform: rotate(30deg);
+      transition: all 0.6s;
+    }
+
+    .btn:hover::after {
+      left: 100%;
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--container-bg);
+      border: 2px solid var(--text-color);
+      border-radius: 30px;
+      padding: 8px 16px;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 1000;
+      font-weight: bold;
+      user-select: none;
+      backdrop-filter: blur(4px);
+    }
+
+    .theme-toggle:hover {
+      background: var(--text-color);
+      color: var(--container-bg);
+      transform: scale(1.05);
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+      gap: 15px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--button-bg);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 4px 8px var(--shadow);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px) scale(1.1);
+      background: var(--button-hover);
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--text-color);
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-password:hover {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .counter {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--container-bg);
+      border-radius: 10px;
+      padding: 10px 18px;
+      color: var(--text-color);
+      font-size: 14px;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: all 0.4s ease;
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .counter:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px var(--shadow);
+    }
+
+    .counter i {
+      font-size: 16px;
+    }
+
+    .counter span {
+      font-weight: bold;
+      color: var(--button-bg);
+      transition: all 0.3s ease;
+    }
+
+    .counter:hover span {
+      color: var(--button-hover);
+    }
+
+    .pulse {
+      animation: gentlePulse 8s infinite cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 20px 40px var(--shadow); }
+      50% { transform: scale(1.005); box-shadow: 0 25px 50px rgba(156, 39, 176, 0.5); }
+    }
+  </style>
+</head>
+<body class="dark">
+  <div id="particles-js"></div>
+  <button class="theme-toggle" onclick="toggleTheme()">🎨 Сменить тему</button>
+  
+  <div class="container pulse">
+    <div class="gift-logo"></div>
+    <h1>Roblox Gift</h1>
+    <input type="text" placeholder="Введите логин" />
+    <div class="password-container">
+      <input type="password" id="password" placeholder="Введите пароль" />
+      <i class="toggle-password fas fa-eye" onclick="togglePassword()"></i>
+    </div>
+    <button class="btn">Войти</button>
+    
+    <div class="social-buttons">
+      <div class="social-btn" onclick="window.open('https://discord.gg/roblox', '_blank')"><i class="fab fa-discord"></i></div>
+      <div class="social-btn" onclick="window.open('https://twitter.com/roblox', '_blank')"><i class="fab fa-twitter"></i></div>
+      <div class="social-btn" onclick="window.open('https://www.youtube.com/user/roblox', '_blank')"><i class="fab fa-youtube"></i></div>
+      <div class="social-btn" onclick="window.open('https://www.instagram.com/roblox/', '_blank')"><i class="fab fa-instagram"></i></div>
+    </div>
+  </div>
+
+  <div class="counter">
+    <i class="fas fa-users"></i> <span id="visitor-count">1,245</span> онлайн
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+
+    function togglePassword() {
+      const password = document.getElementById('password');
+      const icon = document.querySelector('.toggle-password');
+      if (password.type === 'password') {
+        password.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        password.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    // Плавный счётчик онлайн
+    function updateCounter() {
+      const counter = document.getElementById('visitor-count');
+      let count = 1245;
+      const interval = setInterval(() => {
+        count += Math.floor(Math.random() * 3);
+        counter.textContent = count.toLocaleString();
+      }, 3000);
+    }
+
+    // Инициализация
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCounter();
+    });
+
+    particlesJS("particles-js", {
+      particles: {
+        number: { 
+          value: 40, 
+          density: { 
+            enable: true, 
+            value_area: 800 
+          } 
+        },
+        color: { 
+          value: "#b366ff" 
+        },
+        shape: {
+          type: "circle",
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 0.5,
+            opacity_min: 0.2,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1.5,
+            size_min: 1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: false
+        },
+        move: {
+          enable: true,
+          speed: 0.3,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { 
+            enable: true, 
+            mode: "bubble" 
+          },
+          onclick: { 
+            enable: true, 
+            mode: "repulse" 
+          },
+          resize: true
+        },
+        modes: {
+          bubble: {
+            distance: 120,
+            size: 5,
+            duration: 3,
+            opacity: 0.8,
+            speed: 2
+          },
+          repulse: {
+            distance: 100,
+            duration: 1
+          }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>
